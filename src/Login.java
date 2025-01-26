@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
@@ -84,19 +84,19 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 377, 430, 33));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logins.png"))); // NOI18N
-        jButton1.setText("Login");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(0, 51, 0));
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logins.png"))); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 449, 430, 40));
+        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 449, 430, 40));
 
         jButton2.setBackground(new java.awt.Color(0, 51, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -178,60 +178,87 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String email = txtEmail.getText();
         String password = txtPassword.getText();
 
-        int temp = 0;
+        int temp = 0; // To keep track of whether the user authentication is successful or not.
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
         try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM appuser WHERE email='" + email + "' AND password='" + password + "'AND status='Active'");
-            while (rs.next()) {
-                temp = 1;
-                setVisible(false);
-                //call Home
-                new Home(rs.getString("userRole")).setVisible(true);
-            }
+            con = ConnectionProvider.getCon();
+
+            // Use PreparedStatement to prevent SQL injection
+            String query = "SELECT * FROM appuser WHERE email = ? AND password = ? AND status = 'Active'";
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            rs = ps.executeQuery();
             if (email.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
-                        "please enter your Email and Password",
-                        "try again",
+                        "Please enter your Email and Password",
+                        "Try Again",
                         JOptionPane.ERROR_MESSAGE);
-
-            } else if (temp == 0) {
-                JOptionPane.showMessageDialog(null, "Incorrect Email or password");
+            } else {
+                while (rs.next()) {
+                    temp = 1;
+                    setVisible(false);
+                    // Call Home
+                    new Home(rs.getString("userRole")).setVisible(true);
+                }
+                if (temp == 0) {
+                    JOptionPane.showMessageDialog(null, "Incorrect Email or Password");
+                }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            // Properly close resources
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-    int xx, xy;
+
+    }//GEN-LAST:event_btnLoginActionPerformed
+    int xx, xy; // These variables are used to store the initial coordinates of the mouse pointer relative to the jPanel1 when the mouse is pressed.
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         // TODO add your handling code here:
-        int x = evt.getXOnScreen();
+        int x = evt.getXOnScreen();//Retrieves the current position of the mouse pointer on the screen.
         int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - xy);
+        this.setLocation(x - xx, y - xy);//Calculates the new X-coordinate for the window by adjusting the screen's current mouse position with the previously stored offset.
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         // TODO add your handling code here:
-        xx = evt.getX();
-        xy = evt.getY();
+        xx = evt.getX(); //Captures the X and Y coordinates of the mouse pointer when it is pressed, relative to the jPanel1.
+        xy = evt.getY();//Returns the X-coordinate of the mouse pointer relative to jPanel1.
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        for (double i = 0.0; i <= 1.0; i += 0.1) {
+        for (double i = 0.0; i <= 1.0; i += 0.1) { //A for loop to gradually increase the form’s opacity from 0.0 (completely transparent) to 1.0 (fully visible).
             String s = i + "";
             float f = Float.valueOf(s);
             this.setOpacity(f);
             try {
-                Thread.sleep(40);
+                Thread.sleep(40); //Introduces a small delay (40 milliseconds) between each opacity adjustment to create a smooth visual effect.
             } catch (InterruptedException ex) {
                 java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
+            }// Logs the exception details using the Java logging framework for debugging purposes.
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -271,7 +298,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;

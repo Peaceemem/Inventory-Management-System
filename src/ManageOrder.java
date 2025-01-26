@@ -18,14 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.table.TableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-/**
- *
- * @author PEACE
- */
+
 public class ManageOrder extends javax.swing.JFrame {
 
     private int customerPK = 0;
@@ -92,6 +85,8 @@ public class ManageOrder extends javax.swing.JFrame {
         btnSaveOrderDetails = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        jbtnSearch = new javax.swing.JButton();
+        jtxtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -270,7 +265,7 @@ public class ManageOrder extends javax.swing.JFrame {
                 btnAddToCartActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 840, 330, 40));
+        jPanel1.add(btnAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 840, 140, 40));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,6 +304,18 @@ public class ManageOrder extends javax.swing.JFrame {
         });
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 740, 460, 40));
 
+        jbtnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbtnSearch.setText("Search");
+        jbtnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbtnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 840, 90, 40));
+
+        jtxtSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jtxtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 840, 340, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, -1));
 
         pack();
@@ -327,21 +334,60 @@ public class ManageOrder extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tableCustomer.getModel();
         DefaultTableModel productModel = (DefaultTableModel) tableProduct.getModel();
 
+        model.setRowCount(0); // Clear existing rows in the customer table
+        productModel.setRowCount(0); // Clear existing rows in the product table
+
+        Connection con = null;
+        Statement st = null;
+        ResultSet rs = null;
+
         try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM customer");
+            con = ConnectionProvider.getCon();
+            st = con.createStatement();
+
+            // Fetch customer data
+            rs = st.executeQuery("SELECT * FROM customer");
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString("customer_pk"), rs.getString("name"), rs.getString("mobileNumber"), rs.getString("email")});
+                model.addRow(new Object[]{
+                    rs.getString("customer_pk"), // Customer primary key
+                    rs.getString("name"), // Customer name
+                    rs.getString("mobileNumber"), // Customer mobile number
+                    rs.getString("email") // Customer email
+                });
             }
-            rs = st.executeQuery("SELECT * FROM product inner join category on product.category_fk = category.category_pk");
+            rs.close(); // Close the ResultSet after customer data retrieval
+
+            // Fetch product data
+            rs = st.executeQuery("SELECT * FROM product INNER JOIN category ON product.category_fk = category.category_pk");
             while (rs.next()) {
-                productModel.addRow(new Object[]{rs.getString("product_pk"), rs.getString("name"), rs.getString("price"), rs.getString("quantity"), rs.getString("description"), rs.getString("category_fk"), rs.getString(8)});
+                productModel.addRow(new Object[]{
+                    rs.getString("product_pk"), // Product primary key
+                    rs.getString("name"), // Product name
+                    rs.getString("price"), // Product price
+                    rs.getString("quantity"), // Product quantity
+                    rs.getString("description"), // Product description
+                    rs.getString("category_fk"), // Category foreign key
+                    rs.getString(9) // Category name or description
+                });
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-
+            JOptionPane.showMessageDialog(null, "Error loading data: " + e.getMessage());
+        } finally {
+            // Ensure resources are properly closed
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
         }
 
 
@@ -396,7 +442,13 @@ public class ManageOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_tableCustomerMouseClicked
 
     private void tableProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductMouseClicked
-        // TODO add your handling code here:
+        // Check if a customer has been selected first
+        if (customerPK == 0) { // Assuming 0 means no customer selected
+            JOptionPane.showMessageDialog(null, "Please select a customer first.");
+            return; // Prevent further actions
+        }
+
+        // Proceed with the product selection
         int index = tableProduct.getSelectedRow();
         TableModel model = tableProduct.getModel();
 
@@ -412,63 +464,180 @@ public class ManageOrder extends javax.swing.JFrame {
         String productDescription = model.getValueAt(index, 4).toString();
         txtProductDescription.setText(productDescription);
 
-
     }//GEN-LAST:event_tableProductMouseClicked
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
-        // TODO add your handling code here:
+
         String noOfUnits = txtOrderQuantity.getText();
+
         if (!noOfUnits.equals("")) {
             String productName = txtProductName.getText();
             String productDescription = txtProductDescription.getText();
-            String productPrice = txtProductPrice.getText();
-
-            int totalPrice = Integer.parseInt(txtOrderQuantity.getText()) * Integer.parseInt(productPrice);
-
+            String productPriceStr = txtProductPrice.getText();
+            int totalPrice = Integer.parseInt(noOfUnits) * Integer.parseInt(productPriceStr);
             int checkStock = 0;
-            int checkProductAlreadyExistInCart = 0;
+            boolean productAdded = false; // Flag to check if product was successfully added
 
             try {
                 Connection con = ConnectionProvider.getCon();
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM product WHERE product_pk = " + productPK + "");
+                ResultSet rs = st.executeQuery("SELECT * FROM product WHERE product_pk = " + productPK);
                 while (rs.next()) {
-                    if (rs.getInt("quantity") >= Integer.parseInt(noOfUnits)) {
-                        checkStock = 1;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Product is out of stock. Only " + rs.getInt("quantity") + " Left");
+                    int availableQuantity = rs.getInt("quantity");
+                    int requestedQuantity = Integer.parseInt(noOfUnits);
+                    int fixedPrice = rs.getInt("price"); // Base price from the database
+                    int enteredPrice = Integer.parseInt(productPriceStr); // User-entered price
 
+                    // Dynamic Pricing Rules
+                    int allowedMarkup = (int) (fixedPrice * 0.10); // Allow 10% markup
+                    int maxPrice = fixedPrice + allowedMarkup;
+
+                    // Validate user-entered price
+                    if (enteredPrice < fixedPrice || enteredPrice > maxPrice) {
+                        JOptionPane.showMessageDialog(null, "Invalid price! Price must be between " + fixedPrice + " and " + maxPrice + ".");
+                        txtProductPrice.setText(String.valueOf(fixedPrice)); // Reset to fixed price
+                        return; // Exit if price is invalid
+                    }
+
+                    // Calculate the total price based on entered price
+                    totalPrice = enteredPrice * requestedQuantity;
+
+                    // If stock is out
+                    if (availableQuantity == 0) {
+                        JOptionPane.showMessageDialog(null, "Product is out of stock.");
+                        return; // Exit and do not add to cart
+                    }
+
+                    int baseDemand = 200; // Increased base demand
+                    double priceSensitivity = 0.1; // Reduced price sensitivity
+                    double stockImpact = (availableQuantity > 50) ? 1.0 : ((availableQuantity > 10) ? 0.95 : 0.85); // Smoothed stock impact
+                    int randomFluctuation = (int) (Math.random() * 20 - 10); // Random factor between -10 and +10
+
+                    double priceImpact = Math.min(priceSensitivity * enteredPrice * stockImpact, 100); // Cap price impact at 100
+                    int stochasticDemand = (int) (baseDemand - priceImpact + randomFluctuation);
+                    stochasticDemand = Math.max(stochasticDemand, 0); // Ensure demand is non-negative
+
+                    JOptionPane.showMessageDialog(null, "Stochastic demand suggests " + stochasticDemand + " units are likely to sell.");
+
+                    // If stock is insufficient
+                    if (availableQuantity < requestedQuantity) {
+                        JOptionPane.showMessageDialog(null, "Insufficient stock. Only " + availableQuantity + " units left.");
+
+                        // Stock shortage handling remains unchanged
+                        DefaultTableModel model = (DefaultTableModel) tableCart.getModel();
+                        boolean productFound = false;
+
+                        // Check if the product is already in the cart
+                        for (int i = 0; i < tableCart.getRowCount(); i++) {
+                            if (Integer.parseInt(model.getValueAt(i, 0).toString()) == productPK) {
+                                productFound = true;
+
+                                // Option dialog for stock shortage
+                                int choice = JOptionPane.showOptionDialog(
+                                        null,
+                                        "Insufficient stock. Only " + availableQuantity + " units available. Please choose an option",
+                                        "Stock Shortage",
+                                        JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.INFORMATION_MESSAGE,
+                                        null,
+                                        new String[]{"Add to Existing Cart", "Replace with Available Quantity"},
+                                        "Add to Existing Cart"
+                                );
+
+                                if (choice == 0) { // Add to Existing Cart
+                                    int existingQuantity = Integer.parseInt(model.getValueAt(i, 2).toString());
+                                    int newQuantity = existingQuantity + requestedQuantity;
+
+                                    // Check if the new quantity is within available stock
+                                    if (newQuantity <= availableQuantity) {
+                                        int updatedTotalPrice = newQuantity * enteredPrice;
+                                        model.setValueAt(newQuantity, i, 2); // Update quantity in cart
+                                        model.setValueAt(updatedTotalPrice, i, 5); // Update total price in cart
+
+                                        finalTotalPrice = finalTotalPrice - existingQuantity * enteredPrice + updatedTotalPrice;
+                                        lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
+
+                                        JOptionPane.showMessageDialog(null, "Quantity added to cart.");
+                                        productAdded = true;
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Cannot add more than the available stock.");
+                                    }
+                                } else if (choice == 1) { // Replace with Available Quantity
+                                    int existingQuantity = Integer.parseInt(model.getValueAt(i, 2).toString());
+                                    model.setValueAt(availableQuantity, i, 2); // Replace quantity in cart
+                                    model.setValueAt(availableQuantity * enteredPrice, i, 5); // Update total price in cart
+
+                                    finalTotalPrice = finalTotalPrice - existingQuantity * enteredPrice + availableQuantity * enteredPrice;
+                                    lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
+
+                                    JOptionPane.showMessageDialog(null, "Quantity replaced with available stock.");
+                                    productAdded = true;
+                                }
+                                break;
+                            }
+                        }
+
+                        // If product is not found in cart, add a new row
+                        if (!productFound && !productAdded) {
+                            model.addRow(new Object[]{productPK, productName, String.valueOf(availableQuantity), enteredPrice, productDescription, availableQuantity * enteredPrice});
+                            finalTotalPrice += availableQuantity * enteredPrice;
+                            lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
+                            JOptionPane.showMessageDialog(null, "Added to cart with available stock.");
+                            productAdded = true;
+                        }
+                        return; // Exit the method after showing the options or adding to cart
+                    }
+
+                    // If stock is sufficient
+                    checkStock = 1;
+                    if (availableQuantity <= 100) {
+                        JOptionPane.showMessageDialog(null, "Warning: Product stock is running low. Only " + availableQuantity + " units left.");
                     }
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            if (checkStock == 1) {
+
+            // Proceed to add product to cart if stock is sufficient
+            if (checkStock == 1 && !productAdded) {
                 DefaultTableModel model = (DefaultTableModel) tableCart.getModel();
-                if (tableCart.getRowCount() != 0) {
-                    for (int i = 0; i < tableCart.getRowCount(); i++) {
-                        // Loop body: add your code to process each row here
-                        if (Integer.parseInt(model.getValueAt(i, 0).toString()) == productPK) {
-                            checkProductAlreadyExistInCart = 1;
-                            JOptionPane.showMessageDialog(null, "Product Already exist in cart");
+                boolean productFound = false;
 
-                        }
+                // Check if product is already in the cart and update the quantity if found
+                for (int i = 0; i < tableCart.getRowCount(); i++) {
+                    if (Integer.parseInt(model.getValueAt(i, 0).toString()) == productPK) {
+                        int existingQuantity = Integer.parseInt(model.getValueAt(i, 2).toString());
+                        int newQuantity = existingQuantity + Integer.parseInt(noOfUnits);
+                        int updatedTotalPrice = newQuantity * Integer.parseInt(productPriceStr);
+
+                        model.setValueAt(newQuantity, i, 2); // Update quantity in cart
+                        model.setValueAt(updatedTotalPrice, i, 5); // Update total price in cart
+
+                        finalTotalPrice = finalTotalPrice - existingQuantity * Integer.parseInt(productPriceStr) + updatedTotalPrice;
+                        lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
+
+                        JOptionPane.showMessageDialog(null, "Quantity updated successfully.");
+                        productFound = true;
+                        break;
                     }
-
                 }
-                if (checkProductAlreadyExistInCart == 0) {
-                    model.addRow(new Object[]{productPK, productName, noOfUnits, productPrice, productDescription, totalPrice});
-                    finalTotalPrice = finalTotalPrice + totalPrice;
+
+                // If product was not found in the cart, add it as a new row
+                if (!productFound) {
+                    model.addRow(new Object[]{productPK, productName, noOfUnits, productPriceStr, productDescription, totalPrice});
+                    finalTotalPrice += totalPrice;
                     lblFinalTotalPrice.setText(String.valueOf(finalTotalPrice));
-                    JOptionPane.showMessageDialog(null, "Added Successfully");
-
+                    JOptionPane.showMessageDialog(null, "Added to cart.");
                 }
+
                 clearProductFields();
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "No of Quantity and Product field is required");
+            JOptionPane.showMessageDialog(null, "Quantity and Product fields are required.");
         }
+
+
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void tableCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCartMouseClicked
@@ -496,49 +665,45 @@ public class ManageOrder extends javax.swing.JFrame {
                     try {
                         Connection con = ConnectionProvider.getCon();
                         Statement st = con.createStatement();
-//                        st.executeUpdate("update product set quantity=quantity-" + Integer.parseInt(dtm.getValueAt(i, 2).toString()) + "where product_pk=" + Integer.parseInt(dtm.getValueAt(i, 0).toString()));
-                        st.executeUpdate("UPDATE product SET quantity = quantity- "
-                                + Integer.parseInt(dtm.getValueAt(i, 2).toString())
+
+                        // Update product quantity in the product table
+                        st.executeUpdate("UPDATE product SET quantity = quantity - "
+                                + Integer.parseInt(dtm.getValueAt(i, 2).toString()) // Quantity from the cart
                                 + " WHERE product_pk = "
-                                + Integer.parseInt(dtm.getValueAt(i, 0).toString()));
+                                + Integer.parseInt(dtm.getValueAt(i, 0).toString())); // Product PK from the cart
+
+                        // Insert order details into orderDetails table
+                        PreparedStatement ps = con.prepareStatement(
+                                "INSERT INTO orderDetails (orderId, customer_fk, orderDate, totalPaid, product_fk, quantity) VALUES (?, ?, ?, ?, ?, ?)");
+                        ps.setString(1, orderId); // Order ID
+                        ps.setInt(2, customerPK); // Customer PK
+                        ps.setString(3, new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime())); // Order Date
+                        ps.setInt(4, Integer.parseInt(dtm.getValueAt(i, 5).toString())); // Subtotal Price
+                        ps.setInt(5, Integer.parseInt(dtm.getValueAt(i, 0).toString())); // Product PK
+                        ps.setInt(6, Integer.parseInt(dtm.getValueAt(i, 2).toString())); // Product PK
+
+                        ps.executeUpdate();
 
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);
                     }
                 }
             }
-            try {
-                SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-                Calendar cal = Calendar.getInstance();
-                Connection con = ConnectionProvider.getCon();
-                PreparedStatement ps = con.prepareStatement("insert into orderDetails(orderId,customer_fk,orderDate,totalPaid) values (?,?,?,?)");
-                ps.setString(1, orderId);
-                ps.setInt(2, customerPK);
-                ps.setString(3, myFormat.format(cal.getTime()));
-                ps.setInt(4, finalTotalPrice);
-                ps.executeUpdate();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
-//            File dir = new File(InventoryUtils.billPath);
-//            if (!dir.exists()) {
-//                dir.mkdirs();  // Create directory if it doesn't exist
-//            }
 
-            //creating document
+            // Generate the bill (PDF logic remains unchanged)
             com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
             try {
-                SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-                Calendar cal = Calendar.getInstance();
                 PdfWriter.getInstance(doc, new FileOutputStream(InventoryUtils.billPath + "" + orderId + ".pdf"));
                 doc.open();
+
                 Paragraph projectName = new Paragraph("                                                        Inventory Management System\n");
                 doc.add(projectName);
                 Paragraph startLine = new Paragraph("****************************************************************************************************************");
                 doc.add(startLine);
-                Paragraph details = new Paragraph("\torder ID:" + orderId + "\nDate:" + myFormat.format(cal.getTime()) + "\nTotal Paid:" + finalTotalPrice);
+                Paragraph details = new Paragraph("\torder ID:" + orderId + "\nDate:" + new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime()) + "\nTotal Paid:" + finalTotalPrice);
                 doc.add(details);
                 doc.add(startLine);
+
                 PdfPTable tb1 = new PdfPTable(5);
                 PdfPCell nameCell = new PdfPCell(new Phrase("Name"));
                 PdfPCell descriptionCell = new PdfPCell(new Phrase("Description"));
@@ -565,20 +730,16 @@ public class ManageOrder extends javax.swing.JFrame {
                     tb1.addCell(tableCart.getValueAt(i, 3).toString());
                     tb1.addCell(tableCart.getValueAt(i, 2).toString());
                     tb1.addCell(tableCart.getValueAt(i, 5).toString());
-
                 }
 
                 doc.add(tb1);
                 doc.add(startLine);
-                Paragraph thanksMeg = new Paragraph("Thank you, Please visit again.");
-                doc.add(thanksMeg);
-                // open pdf
+                Paragraph thanksMsg = new Paragraph("Thank you, Please visit again.");
+                doc.add(thanksMsg);
                 OpenPdf.OpenById(orderId);
 
             } catch (Exception e) {
-
                 JOptionPane.showMessageDialog(null, e);
-
             }
             doc.close();
             setVisible(false);
@@ -586,6 +747,7 @@ public class ManageOrder extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Please add some product to Cart or select Customer");
         }
+
 
     }//GEN-LAST:event_btnSaveOrderDetailsActionPerformed
     int xx, xy;
@@ -601,6 +763,67 @@ public class ManageOrder extends javax.swing.JFrame {
         xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
+        String searchText = jtxtSearch.getText().trim();
+        DefaultTableModel productModel = (DefaultTableModel) tableProduct.getModel();
+
+// Clear current rows
+        productModel.setRowCount(0);
+
+// Define the query
+        String query = "SELECT product.product_pk, product.name, product.price, product.quantity, "
+                + "product.description, product.category_fk, category.name AS category_name "
+                + "FROM product "
+                + "INNER JOIN category ON product.category_fk = category.category_pk "
+                + "WHERE product.name LIKE ? OR category.name LIKE ?";
+
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            // Establish connection
+            con = ConnectionProvider.getCon();
+            pst = con.prepareStatement(query);
+
+            // Set query parameters
+            pst.setString(1, "%" + searchText + "%");
+            pst.setString(2, "%" + searchText + "%");
+
+            // Execute the query
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                productModel.addRow(new Object[]{
+                    rs.getString("product_pk"),
+                    rs.getString("name"),
+                    rs.getString("price"),
+                    rs.getString("quantity"),
+                    rs.getString("description"),
+                    rs.getString("category_fk"),
+                    rs.getString("category_name")
+                });
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing database resources: " + e.getMessage());
+            }
+        }
+
+
+    }//GEN-LAST:event_jbtnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -660,6 +883,8 @@ public class ManageOrder extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton jbtnSearch;
+    private javax.swing.JTextField jtxtSearch;
     private javax.swing.JLabel lblFinalTotalPrice;
     private javax.swing.JTable tableCart;
     private javax.swing.JTable tableCustomer;

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class OpenPdf {
 
-    public static void OpenById(String id) {
+    public static void OpenById(String id) { //Represents the identifier of the file to open, used to construct the file path.
         try {
             if (new File(InventoryUtils.billPath + id + ".pdf").exists()) {
                 // File exists, proceed with logic

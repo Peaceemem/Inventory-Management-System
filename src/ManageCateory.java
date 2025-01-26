@@ -199,7 +199,7 @@ public class ManageCateory extends javax.swing.JFrame {
         int index = tableCategory.getSelectedRow();
         TableModel model = tableCategory.getModel();
 
-        String id = model.getValueAt(index, 0).toString();
+        String id = model.getValueAt(index, 0).toString();//Retrieves the category's primary key from the first column of the selected row and stores it in categoryPK.
         categoryPK = Integer.parseInt(id);
 
         String name = model.getValueAt(index, 1).toString();

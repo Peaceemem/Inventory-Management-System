@@ -58,6 +58,24 @@ public class POS extends javax.swing.JFrame {
         jbtnFruitCake = new javax.swing.JButton();
         jbtnMeatPie = new javax.swing.JButton();
         jbtnToastBread = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -260,182 +278,398 @@ public class POS extends javax.swing.JFrame {
         jbtnHotChocolate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnHotChocolate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/chocolate.jpg"))); // NOI18N
         jbtnHotChocolate.setText("Burger");
+        jbtnHotChocolate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnHotChocolateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnHotChocolateMouseExited(evt);
+            }
+        });
         jbtnHotChocolate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnHotChocolateActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnHotChocolate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 150, 170));
+        jPanel2.add(jbtnHotChocolate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, 130));
 
         jbtnCoffee.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnCoffee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Blend dark.jpg"))); // NOI18N
         jbtnCoffee.setText("Burger");
+        jbtnCoffee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnCoffeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnCoffeeMouseExited(evt);
+            }
+        });
         jbtnCoffee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCoffeeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnCoffee, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 170));
+        jPanel2.add(jbtnCoffee, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 130));
 
         jbtnDonut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnDonut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/donut 2.jpg"))); // NOI18N
         jbtnDonut.setText("Burger");
+        jbtnDonut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnDonutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnDonutMouseExited(evt);
+            }
+        });
         jbtnDonut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnDonutActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnDonut, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 150, 170));
+        jPanel2.add(jbtnDonut, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 140, 130));
 
         jbtnChocolateCake.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnChocolateCake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cakec.jpg"))); // NOI18N
         jbtnChocolateCake.setText("Burger");
+        jbtnChocolateCake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnChocolateCakeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnChocolateCakeMouseExited(evt);
+            }
+        });
         jbtnChocolateCake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnChocolateCakeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnChocolateCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 150, 170));
+        jPanel2.add(jbtnChocolateCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 140, 130));
 
         jbtnBurger.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnBurger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/burger.jpg"))); // NOI18N
         jbtnBurger.setText("Burger");
+        jbtnBurger.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnBurgerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnBurgerMouseExited(evt);
+            }
+        });
         jbtnBurger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnBurgerActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 150, 170));
+        jPanel2.add(jbtnBurger, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 140, 130));
 
         jbtnFrenchSandWich.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnFrenchSandWich.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/french.jpeg"))); // NOI18N
         jbtnFrenchSandWich.setText("Burger");
+        jbtnFrenchSandWich.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnFrenchSandWichMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnFrenchSandWichMouseExited(evt);
+            }
+        });
         jbtnFrenchSandWich.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnFrenchSandWichActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnFrenchSandWich, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 150, 170));
+        jPanel2.add(jbtnFrenchSandWich, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 140, 130));
 
         jbtnEggRoll.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnEggRoll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/egg 2.jpeg"))); // NOI18N
         jbtnEggRoll.setText("Burger");
+        jbtnEggRoll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnEggRollMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnEggRollMouseExited(evt);
+            }
+        });
         jbtnEggRoll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEggRollActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnEggRoll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, 160));
+        jPanel2.add(jbtnEggRoll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 140, 130));
 
         jbtnBreadCake.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnBreadCake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fruit.jpg"))); // NOI18N
         jbtnBreadCake.setText("Burger");
+        jbtnBreadCake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnBreadCakeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnBreadCakeMouseExited(evt);
+            }
+        });
         jbtnBreadCake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnBreadCakeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnBreadCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 150, 160));
+        jPanel2.add(jbtnBreadCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 140, 130));
 
         jbtnCoke.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnCoke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/coke.jpg"))); // NOI18N
         jbtnCoke.setText("Burger");
+        jbtnCoke.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnCokeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnCokeMouseExited(evt);
+            }
+        });
         jbtnCoke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCokeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnCoke, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 150, 160));
+        jPanel2.add(jbtnCoke, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 140, 130));
 
         jbtnIceCream.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnIceCream.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ice cream.jpg"))); // NOI18N
         jbtnIceCream.setText("Burger");
+        jbtnIceCream.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnIceCreamMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnIceCreamMouseExited(evt);
+            }
+        });
         jbtnIceCream.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIceCreamActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnIceCream, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, 160));
+        jPanel2.add(jbtnIceCream, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 140, 130));
 
         jbtnCappuccino.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnCappuccino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/busra-salkim-bQ3Itez0vvI-unsplash.jpg"))); // NOI18N
         jbtnCappuccino.setText("Burger");
+        jbtnCappuccino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnCappuccinoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnCappuccinoMouseExited(evt);
+            }
+        });
         jbtnCappuccino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCappuccinoActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnCappuccino, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 150, 160));
+        jPanel2.add(jbtnCappuccino, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 140, 130));
 
         jbtnMineral.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnMineral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mineral.jpg"))); // NOI18N
         jbtnMineral.setText("Burger");
+        jbtnMineral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnMineralMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnMineralMouseExited(evt);
+            }
+        });
         jbtnMineral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnMineralActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnMineral, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 150, 160));
+        jPanel2.add(jbtnMineral, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 150, 130));
 
         jbtnNoodles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnNoodles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/noodles.jpg"))); // NOI18N
         jbtnNoodles.setText("Burger");
+        jbtnNoodles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnNoodlesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnNoodlesMouseExited(evt);
+            }
+        });
         jbtnNoodles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnNoodlesActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnNoodles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 150, 160));
+        jPanel2.add(jbtnNoodles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 140, 130));
 
         jbtnRainBowCake.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnRainBowCake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rainbow.jpg"))); // NOI18N
         jbtnRainBowCake.setText("Burger");
+        jbtnRainBowCake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnRainBowCakeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnRainBowCakeMouseExited(evt);
+            }
+        });
         jbtnRainBowCake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRainBowCakeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnRainBowCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 150, 160));
+        jPanel2.add(jbtnRainBowCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 140, 130));
 
         jbtnGreen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnGreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/green.jpg"))); // NOI18N
         jbtnGreen.setText("Burger");
+        jbtnGreen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnGreenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnGreenMouseExited(evt);
+            }
+        });
         jbtnGreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnGreenActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnGreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 150, 160));
+        jPanel2.add(jbtnGreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 140, 130));
 
         jbtnFruitCake.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnFruitCake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/strawberry.jpg"))); // NOI18N
         jbtnFruitCake.setText("Burger");
+        jbtnFruitCake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnFruitCakeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnFruitCakeMouseExited(evt);
+            }
+        });
         jbtnFruitCake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnFruitCakeActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnFruitCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 150, 160));
+        jPanel2.add(jbtnFruitCake, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 140, 130));
 
         jbtnMeatPie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnMeatPie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/meet.jpeg"))); // NOI18N
         jbtnMeatPie.setText("Burger");
+        jbtnMeatPie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnMeatPieMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnMeatPieMouseExited(evt);
+            }
+        });
         jbtnMeatPie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnMeatPieActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnMeatPie, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 150, 160));
+        jPanel2.add(jbtnMeatPie, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 140, 130));
 
         jbtnToastBread.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnToastBread.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/high-angle-tasty-toast-arrangement (1).jpg"))); // NOI18N
         jbtnToastBread.setText("Burger");
+        jbtnToastBread.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtnToastBreadMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtnToastBreadMouseExited(evt);
+            }
+        });
         jbtnToastBread.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnToastBreadActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtnToastBread, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, 150, 160));
+        jPanel2.add(jbtnToastBread, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, 150, 130));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("         Chocolate");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 140, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("        HotChocolate");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 140, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("             Coffee");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 140, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("             Donut");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 140, 30));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("   French SandWich");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 140, 30));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("                Burger");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 140, 30));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("            Egg Roll");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 140, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("        Bread Cake");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 140, 30));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("              Coca");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 140, 30));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("         Cappuccino");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 140, 30));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("          Ice Cream");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 140, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setText("               Sprite");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, 150, 30));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel22.setText("        Noodles");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 140, 30));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setText("       Rainbow Cake");
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 140, 30));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setText("        GreenT Tea");
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 140, 30));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel25.setText("            Fruit Cake");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 140, 30));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel26.setText("               Meat Pie");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, 140, 30));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("           Toast Bread");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 490, 150, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 12, 920, 530));
 
@@ -595,7 +829,7 @@ public class POS extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 1590, 250));
 
-        jtxtBarCode.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jtxtBarCode.setFont(new java.awt.Font("Code 128", java.awt.Font.PLAIN, 70));
         getContentPane().add(jtxtBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 482, 370, 60));
 
         pack();
@@ -838,7 +1072,7 @@ public class POS extends javax.swing.JFrame {
         double priceOfItem = 1000.0;
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{"Fruit HotChocolate", "1", priceOfItem});
+        model.addRow(new Object[]{" HotChocolate", "1", priceOfItem});
         ItemCost();
     }//GEN-LAST:event_jbtnHotChocolateActionPerformed
 
@@ -862,11 +1096,14 @@ public class POS extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnDonutActionPerformed
 
     private void jbtnChocolateCakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChocolateCakeActionPerformed
-        // TODO add your handling code here:
+
         double priceOfItem = 10000.0;
 
+        // Add product details (including custom number) to the table
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{"Chocolate cake", "1", priceOfItem});
+        model.addRow(new Object[]{"Chocolate Cake", "1", priceOfItem});
+
+        // Update the total cost
         ItemCost();
     }//GEN-LAST:event_jbtnChocolateCakeActionPerformed
 
@@ -938,7 +1175,7 @@ public class POS extends javax.swing.JFrame {
         double priceOfItem = 700.0;
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{"Coca", "1", priceOfItem});
+        model.addRow(new Object[]{"Sprite", "1", priceOfItem});
         ItemCost();
     }//GEN-LAST:event_jbtnMineralActionPerformed
 
@@ -1081,9 +1318,10 @@ public class POS extends javax.swing.JFrame {
     private void jbtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPrintActionPerformed
         // TODO add your handling code here:
         String total = jtxtTotal.getText();
+        String customerNumber = "PEA" + System.currentTimeMillis();
 
         // Adding total to the header or footer
-        MessageFormat header = new MessageFormat("Total: " + total + " | Printing in progress");
+        MessageFormat header = new MessageFormat("Total: " + total + " | " + customerNumber + " | Printing Done");
         MessageFormat footer = new MessageFormat("Total: " + total + " | Page {0, number, integer}");
 
         try {
@@ -1127,6 +1365,159 @@ public class POS extends javax.swing.JFrame {
         activeTextField = jtxtCard; // Set jtxtCard as the active field
     }//GEN-LAST:event_jtxtCardFocusGained
 
+    private void jbtnEggRollMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEggRollMouseEntered
+        // TODO add your handling code here:
+        jbtnEggRoll.setSize(jbtnEggRoll.getWidth() + 20, jbtnEggRoll.getHeight() + 20);
+
+    }//GEN-LAST:event_jbtnEggRollMouseEntered
+
+    private void jbtnEggRollMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEggRollMouseExited
+        // TODO add your handling code here:
+        jbtnEggRoll.setSize(jbtnEggRoll.getWidth() - 20, jbtnEggRoll.getHeight() - 20);
+
+    }//GEN-LAST:event_jbtnEggRollMouseExited
+
+    private void jbtnCoffeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCoffeeMouseEntered
+        jbtnCoffee.setSize(jbtnCoffee.getWidth() + 20, jbtnCoffee.getHeight() + 20);
+    }//GEN-LAST:event_jbtnCoffeeMouseEntered
+
+    private void jbtnCoffeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCoffeeMouseExited
+        jbtnCoffee.setSize(jbtnCoffee.getWidth() - 20, jbtnCoffee.getHeight() - 20);    }//GEN-LAST:event_jbtnCoffeeMouseExited
+
+    private void jbtnHotChocolateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnHotChocolateMouseEntered
+        // TODO add your handling code here:
+        jbtnHotChocolate.setSize(jbtnHotChocolate.getWidth() + 20, jbtnHotChocolate.getHeight() + 20);
+    }//GEN-LAST:event_jbtnHotChocolateMouseEntered
+
+    private void jbtnHotChocolateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnHotChocolateMouseExited
+        // TODO add your handling code here:
+        jbtnHotChocolate.setSize(jbtnHotChocolate.getWidth() - 20, jbtnHotChocolate.getHeight() - 20);
+    }//GEN-LAST:event_jbtnHotChocolateMouseExited
+
+    private void jbtnChocolateCakeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnChocolateCakeMouseEntered
+        jbtnChocolateCake.setSize(jbtnChocolateCake.getWidth() + 20, jbtnChocolateCake.getHeight() + 20);
+    }//GEN-LAST:event_jbtnChocolateCakeMouseEntered
+
+    private void jbtnChocolateCakeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnChocolateCakeMouseExited
+        jbtnChocolateCake.setSize(jbtnChocolateCake.getWidth() - 20, jbtnChocolateCake.getHeight() - 20);
+    }//GEN-LAST:event_jbtnChocolateCakeMouseExited
+
+    private void jbtnDonutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnDonutMouseEntered
+        jbtnDonut.setSize(jbtnDonut.getWidth() + 20, jbtnDonut.getHeight() + 20);
+
+    }//GEN-LAST:event_jbtnDonutMouseEntered
+
+    private void jbtnDonutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnDonutMouseExited
+        jbtnDonut.setSize(jbtnDonut.getWidth() - 20, jbtnDonut.getHeight() - 20);
+
+    }//GEN-LAST:event_jbtnDonutMouseExited
+
+    private void jbtnFrenchSandWichMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnFrenchSandWichMouseEntered
+        jbtnFrenchSandWich.setSize(jbtnFrenchSandWich.getWidth() + 20, jbtnFrenchSandWich.getHeight() + 20);
+    }//GEN-LAST:event_jbtnFrenchSandWichMouseEntered
+
+    private void jbtnFrenchSandWichMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnFrenchSandWichMouseExited
+        jbtnFrenchSandWich.setSize(jbtnFrenchSandWich.getWidth() - 20, jbtnFrenchSandWich.getHeight() - 20);
+    }//GEN-LAST:event_jbtnFrenchSandWichMouseExited
+
+    private void jbtnBurgerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBurgerMouseEntered
+        jbtnBurger.setSize(jbtnBurger.getWidth() + 20, jbtnBurger.getHeight() + 20);
+    }//GEN-LAST:event_jbtnBurgerMouseEntered
+
+    private void jbtnBurgerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBurgerMouseExited
+        jbtnBurger.setSize(jbtnBurger.getWidth() - 20, jbtnBurger.getHeight() - 20);
+    }//GEN-LAST:event_jbtnBurgerMouseExited
+
+    private void jbtnBreadCakeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBreadCakeMouseEntered
+        jbtnBreadCake.setSize(jbtnBreadCake.getWidth() + 20, jbtnBreadCake.getHeight() + 20);
+    }//GEN-LAST:event_jbtnBreadCakeMouseEntered
+
+    private void jbtnBreadCakeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBreadCakeMouseExited
+        jbtnBreadCake.setSize(jbtnBreadCake.getWidth() - 20, jbtnBreadCake.getHeight() - 20);
+    }//GEN-LAST:event_jbtnBreadCakeMouseExited
+
+    private void jbtnCokeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCokeMouseEntered
+        jbtnCoke.setSize(jbtnCoke.getWidth() + 20, jbtnCoke.getHeight() + 20);
+    }//GEN-LAST:event_jbtnCokeMouseEntered
+
+    private void jbtnCokeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCokeMouseExited
+        jbtnCoke.setSize(jbtnCoke.getWidth() - 20, jbtnCoke.getHeight() - 20);
+    }//GEN-LAST:event_jbtnCokeMouseExited
+
+    private void jbtnIceCreamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnIceCreamMouseEntered
+        jbtnIceCream.setSize(jbtnIceCream.getWidth() + 20, jbtnIceCream.getHeight() + 20);
+    }//GEN-LAST:event_jbtnIceCreamMouseEntered
+
+    private void jbtnIceCreamMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnIceCreamMouseExited
+        jbtnIceCream.setSize(jbtnIceCream.getWidth() - 20, jbtnIceCream.getHeight() - 20);
+    }//GEN-LAST:event_jbtnIceCreamMouseExited
+
+    private void jbtnCappuccinoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCappuccinoMouseEntered
+        jbtnCappuccino.setSize(jbtnCappuccino.getWidth() + 20, jbtnCappuccino.getHeight() + 20);
+    }//GEN-LAST:event_jbtnCappuccinoMouseEntered
+
+    private void jbtnCappuccinoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnCappuccinoMouseExited
+        jbtnCappuccino.setSize(jbtnCappuccino.getWidth() - 20, jbtnCappuccino.getHeight() - 20);
+    }//GEN-LAST:event_jbtnCappuccinoMouseExited
+
+    private void jbtnMineralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnMineralMouseEntered
+        jbtnMineral.setSize(jbtnMineral.getWidth() + 20, jbtnMineral.getHeight() + 20);
+    }//GEN-LAST:event_jbtnMineralMouseEntered
+
+    private void jbtnMineralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnMineralMouseExited
+        jbtnMineral.setSize(jbtnMineral.getWidth() - 20, jbtnMineral.getHeight() - 20);
+    }//GEN-LAST:event_jbtnMineralMouseExited
+
+    private void jbtnNoodlesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNoodlesMouseEntered
+        jbtnNoodles.setSize(jbtnNoodles.getWidth() + 20, jbtnNoodles.getHeight() + 20);
+    }//GEN-LAST:event_jbtnNoodlesMouseEntered
+
+    private void jbtnNoodlesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnNoodlesMouseExited
+        jbtnNoodles.setSize(jbtnNoodles.getWidth() - 20, jbtnNoodles.getHeight() - 20);
+    }//GEN-LAST:event_jbtnNoodlesMouseExited
+
+    private void jbtnRainBowCakeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnRainBowCakeMouseEntered
+        jbtnRainBowCake.setSize(jbtnRainBowCake.getWidth() + 20, jbtnRainBowCake.getHeight() + 20);
+    }//GEN-LAST:event_jbtnRainBowCakeMouseEntered
+
+    private void jbtnRainBowCakeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnRainBowCakeMouseExited
+        jbtnRainBowCake.setSize(jbtnRainBowCake.getWidth() - 20, jbtnRainBowCake.getHeight() - 20);
+    }//GEN-LAST:event_jbtnRainBowCakeMouseExited
+
+    private void jbtnGreenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGreenMouseEntered
+        jbtnGreen.setSize(jbtnGreen.getWidth() + 20, jbtnGreen.getHeight() + 20);
+    }//GEN-LAST:event_jbtnGreenMouseEntered
+
+    private void jbtnGreenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGreenMouseExited
+        jbtnGreen.setSize(jbtnGreen.getWidth() - 20, jbtnGreen.getHeight() - 20);
+    }//GEN-LAST:event_jbtnGreenMouseExited
+
+    private void jbtnFruitCakeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnFruitCakeMouseEntered
+        jbtnFruitCake.setSize(jbtnFruitCake.getWidth() + 20, jbtnFruitCake.getHeight() + 20);
+    }//GEN-LAST:event_jbtnFruitCakeMouseEntered
+
+    private void jbtnFruitCakeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnFruitCakeMouseExited
+        jbtnFruitCake.setSize(jbtnFruitCake.getWidth() - 20, jbtnFruitCake.getHeight() - 20);
+    }//GEN-LAST:event_jbtnFruitCakeMouseExited
+
+    private void jbtnMeatPieMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnMeatPieMouseEntered
+        jbtnMeatPie.setSize(jbtnMeatPie.getWidth() + 20, jbtnMeatPie.getHeight() + 20);
+    }//GEN-LAST:event_jbtnMeatPieMouseEntered
+
+    private void jbtnMeatPieMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnMeatPieMouseExited
+        jbtnMeatPie.setSize(jbtnMeatPie.getWidth() - 20, jbtnMeatPie.getHeight() - 20);
+    }//GEN-LAST:event_jbtnMeatPieMouseExited
+
+    private void jbtnToastBreadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnToastBreadMouseEntered
+        jbtnToastBread.setSize(jbtnToastBread.getWidth() + 20, jbtnToastBread.getHeight() + 20);
+    }//GEN-LAST:event_jbtnToastBreadMouseEntered
+
+    private void jbtnToastBreadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnToastBreadMouseExited
+        // TODO add your handling code here:
+        jbtnToastBread.setSize(jbtnToastBread.getWidth() - 20, jbtnToastBread.getHeight() - 20);
+
+    }//GEN-LAST:event_jbtnToastBreadMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1168,7 +1559,25 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jCboPayment;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
